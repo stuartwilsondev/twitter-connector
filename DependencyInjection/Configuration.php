@@ -24,6 +24,14 @@ class Configuration implements ConfigurationInterface
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
 
+        $rootNode
+        ->children()
+        ->scalarNode('twitter_consumer_key')->cannotBeEmpty()->end()
+        ->scalarNode('twitter_consumer_secret')->cannotBeEmpty()->end()
+        ->scalarNode('twitter_access_token')->cannotBeEmpty()->end()
+        ->scalarNode('twitter_access_secret')->cannotBeEmpty()->end()
+        ->end();
+
         return $treeBuilder;
     }
 }
