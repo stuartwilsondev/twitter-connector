@@ -1,0 +1,26 @@
+{
+  "name" : "stuartwilsondev/twitter-connector",
+  "description" : "Twitter Connector bundle",
+  "type" : "symfony-bundle",
+  "authors" : [{
+    "name" : "Stuart Wilson",
+    "email" : "stuart@stuartwilsondev.com"
+  }],
+  "keywords" : [
+    "Twitter Bundle"
+  ],
+  "license" : [
+    "MIT"
+  ],
+  "require" : {
+  },
+  "autoload" : {
+    "psr-0" : {
+      "Company\\DemoBundle" : ""
+    }
+  },
+  "target-dir" : "StuartWilsonDev/TwitterConnectorBundle",
+  "repositories" : [{
+  }]
+}
+
