@@ -14,7 +14,11 @@
   ],
   "require" : {
     "php": ">=5.5",
-    "symfony/symfony": ">=2.7"
+    "symfony/symfony": ">=2.7",
+    "guzzlehttp/guzzle": ">=4,<6",
+    "guzzlehttp/oauth-subscriber": "0.1.*",
+    "guzzlehttp/retry-subscriber": "~1.0",
+    "guzzlehttp/log-subscriber": "~1.0"
   },
   "autoload" : {
     "psr-0" : {
