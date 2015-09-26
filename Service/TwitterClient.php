@@ -8,14 +8,51 @@
 
 namespace StuartWilsonDev\TwitterConnectorBundle\Service;
 
+use Psr\Log\LoggerAwareTrait;
+
+/**
+ * Class TwitterClient
+ * @package StuartWilsonDev\TwitterConnectorBundle\Service
+ */
 class TwitterClient {
 
+    use LoggerAwareTrait;
+
+    /**
+     * @var
+     */
+    protected $token;
+    /**
+     * @var
+     */
     protected $consumerKey;
+    /**
+     * @var
+     */
     protected $consumerSecret;
+    /**
+     * @var
+     */
     protected $accessKey;
+    /**
+     * @var
+     */
     protected $accessSecret;
 
-    function __construct($consumerKey, $consumerSecret, $accessKey, $accessSecret)
+    /**
+     * @param Token $token
+     * @param $consumerKey
+     * @param $consumerSecret
+     * @param $accessKey
+     * @param $accessSecret
+     */
+    function __construct(
+        Token $token,
+        $consumerKey,
+        $consumerSecret,
+        $accessKey,
+        $accessSecret
+    )
     {
         $this->consumerKey = $consumerKey;
         $this->consumerSecret = $consumerSecret;

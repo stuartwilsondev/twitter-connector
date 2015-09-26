@@ -1,16 +1,32 @@
 parameters:
   twitter_connector.twitter_client.class: StuartWilsonDev\TwitterConnectorBundle\Service\TwitterClient
+  twitter_connector.twitter_token_factory.class: StuartWilsonDev\TwitterConnectorBundle\Service\TokenFactory
+  twitter_connector.twitter_token.class: StuartWilsonDev\TwitterConnectorBundle\Service\Token
   twitter_consumer_key: -
   twitter_consumer_secret: -
   twitter_access_token: -
   twitter_access_secret: -
 
 services:
+
+  twitter_connector.token_factory:
+      class: "%twitter_connector.twitter_token_factory.class%"
+
+  twitter_connector.token:
+      class:   "%twitter_connector.twitter_token.class%"
+      factory: ["@twitter_connector.token_factory", createToken]
+      arguments:
+        access_token: "%twitter_access_token%"
+        access_secret: "%twitter_access_secret%"
+
   twitter_connector.twitter_client:
     class: "%twitter_connector.twitter_client.class%"
     arguments:
+      token: "@twitter_connector.token"
       consumer_key: "%twitter_consumer_key%"
       consumer_secret: "%twitter_consumer_secret%"
       access_token: "%twitter_access_token%"
       access_secret: "%twitter_access_secret%"
+    calls:
+       - [setLogger, ["@logger"]]
 
