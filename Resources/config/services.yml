@@ -2,10 +2,6 @@ parameters:
   twitter_connector.twitter_client.class: StuartWilsonDev\TwitterConnectorBundle\Service\TwitterClient
   twitter_connector.twitter_token_factory.class: StuartWilsonDev\TwitterConnectorBundle\Service\TokenFactory
   twitter_connector.twitter_token.class: StuartWilsonDev\TwitterConnectorBundle\Service\Token
-  twitter_consumer_key: -
-  twitter_consumer_secret: -
-  twitter_access_token: -
-  twitter_access_secret: -
 
 services:
 
