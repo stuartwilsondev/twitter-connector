@@ -13,6 +13,8 @@
     "MIT"
   ],
   "require" : {
+    "php": ">=5.5",
+    "symfony/symfony": ">=2.7"
   },
   "autoload" : {
     "psr-0" : {
