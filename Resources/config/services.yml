@@ -1,4 +1,12 @@
+parameters:
+  twitter_connector.twitter_client.class: StuartWilsonDev\TwitterConnectorBundle\Service\TwitterClient
+
 services:
-#    twitter_connector.example:
-#        class: StuartWilsonDev\TwitterConnectorBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+  twitter_connector.twitter_client
+    class: "%twitter_connector.twitter_client.class%"
+    arguments:
+      consumer_key: "%twitter_connector.twitter_consumer_key%"
+      consumer_secret: "%twitter_connector.twitter_consumer_secret%"
+      access_token: "%twitter_connector.twitter_access_token%"
+      access_secret: "%twitter_connector.twitter_access_secret%"
+
