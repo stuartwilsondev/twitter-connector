@@ -2,7 +2,7 @@ parameters:
   twitter_connector.twitter_client.class: StuartWilsonDev\TwitterConnectorBundle\Service\TwitterClient
 
 services:
-  twitter_connector.twitter_client
+  twitter_connector.twitter_client:
     class: "%twitter_connector.twitter_client.class%"
     arguments:
       consumer_key: "%twitter_connector.twitter_consumer_key%"
