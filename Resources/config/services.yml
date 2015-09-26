@@ -29,4 +29,3 @@ services:
       access_secret: "%twitter_access_secret%"
     calls:
        - [setLogger, ["@logger"]]
-

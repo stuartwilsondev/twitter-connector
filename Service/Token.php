@@ -15,11 +15,11 @@ namespace StuartWilsonDev\TwitterConnectorBundle\Service;
 class Token
 {
     /**
-     * @var
+     * @var String
      */
     protected $accessToken;
     /**
-     * @var
+     * @var String
      */
     protected $accessSecret;
 
@@ -27,7 +27,7 @@ class Token
      * @param $accessToken
      * @param $accessSecret
      */
-    function __construct($accessToken, $accessSecret)
+    public function __construct($accessToken, $accessSecret)
     {
         $this->accessToken = $accessToken;
         $this->accessSecret = $accessSecret;
@@ -53,7 +53,5 @@ class Token
             $this->urlencodeRFC3986($this->accessSecret)
         );
     }
-
-
 
 }

@@ -14,28 +14,28 @@ use Psr\Log\LoggerAwareTrait;
  * Class TwitterClient
  * @package StuartWilsonDev\TwitterConnectorBundle\Service
  */
-class TwitterClient {
-
+class TwitterClient
+{
     use LoggerAwareTrait;
 
     /**
-     * @var
+     * @var Token
      */
     protected $token;
     /**
-     * @var
+     * @var String
      */
     protected $consumerKey;
     /**
-     * @var
+     * @var String
      */
     protected $consumerSecret;
     /**
-     * @var
+     * @var String
      */
     protected $accessKey;
     /**
-     * @var
+     * @var String
      */
     protected $accessSecret;
 
@@ -46,7 +46,7 @@ class TwitterClient {
      * @param $accessKey
      * @param $accessSecret
      */
-    function __construct(
+    public function __construct(
         Token $token,
         $consumerKey,
         $consumerSecret,
@@ -60,6 +60,5 @@ class TwitterClient {
         $this->accessKey = $accessKey;
         $this->accessSecret = $accessSecret;
     }
-
 
 }

@@ -14,10 +14,9 @@ use Psr\Log\LoggerAwareTrait;
  * Class TokenFactory
  * @package StuartWilsonDev\TwitterConnectorBundle\Service
  */
-class TokenFactory {
-
+class TokenFactory
+{
     use LoggerAwareTrait;
-
 
     /**
      * @param $accessToken
