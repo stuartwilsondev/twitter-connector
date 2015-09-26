@@ -26,10 +26,10 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
         ->children()
-        ->scalarNode('twitter_consumer_key')->cannotBeEmpty()->end()
-        ->scalarNode('twitter_consumer_secret')->cannotBeEmpty()->end()
-        ->scalarNode('twitter_access_token')->cannotBeEmpty()->end()
-        ->scalarNode('twitter_access_secret')->cannotBeEmpty()->end()
+        ->scalarNode('twitter_consumer_key')->isRequired()->cannotBeEmpty()->end()
+        ->scalarNode('twitter_consumer_secret')->isRequired()->cannotBeEmpty()->end()
+        ->scalarNode('twitter_access_token')->isRequired()->cannotBeEmpty()->end()
+        ->scalarNode('twitter_access_secret')->isRequired()->cannotBeEmpty()->end()
         ->end();
 
         return $treeBuilder;
