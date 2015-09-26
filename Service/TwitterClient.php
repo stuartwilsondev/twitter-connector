@@ -54,6 +54,7 @@ class TwitterClient {
         $accessSecret
     )
     {
+        $this->token = $token;
         $this->consumerKey = $consumerKey;
         $this->consumerSecret = $consumerSecret;
         $this->accessKey = $accessKey;
