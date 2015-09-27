@@ -29,7 +29,7 @@ Register bundle in AppKernel
 ```php
     $bundles = array(
     ...
-        new StuartWilsonDev\TestBundle\StuartWilsonDevTestBundle()
+        new StuartWilsonDev\TwitterConnectorBundle\TwitterConnectorBundle(),
     ...
     )
 
