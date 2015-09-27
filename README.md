@@ -64,7 +64,7 @@ twitter_connector:
 $client = $this->get('twitter_connector.twitter_client');
 $client->getStream(['track' => 'potato,elephant,cheese'], function($tweet) {
     
-    //do what you need to do with the Tweet here (applid to each Tweet)
+    //do what you need to do with the Tweet here (applied to each Tweet)
     //In this example I just decode the json and print the 'created_at' and 'text'
     //e.g.
     $tweetData = json_decode($tweet);
