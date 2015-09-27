@@ -21,8 +21,9 @@ class TwitterClient
 {
     use LoggerAwareTrait;
 
-    const TWITTER_API_URL = 'https://stream.twitter.com/1.1';
-    const STATUSES_ENDPOINT = '/statuses/filter.json';
+    const TWITTER_API_URL = 'https://stream.twitter.com/1.1/';
+    const STATUSES_ENDPOINT = 'statuses/filter.json';
+    const MAX_RETRIES = 10;
 
     /**
      * @var Token
@@ -71,7 +72,7 @@ class TwitterClient
     {
 
         $client = new Client([
-            'base_url' => 'https://stream.twitter.com/1.1/',
+            'base_url' => self::TWITTER_API_URL,
             'defaults' => ['auth' => 'oauth', 'stream' => true],
         ]);
 
@@ -86,13 +87,13 @@ class TwitterClient
 
         $retry = new RetrySubscriber([
             'filter' => RetrySubscriber::createStatusFilter([503]),
-            'max'    => 4,
+            'max'    => self::MAX_RETRIES,
         ]);
         $client->getEmitter()->attach($retry);
         $client->getEmitter()->attach($oauth);
 
 
-        $response = $client->post('statuses/filter.json', [
+        $response = $client->post(self::STATUSES_ENDPOINT, [
             'body'   => $track
         ]);
 
@@ -105,7 +106,7 @@ class TwitterClient
             $line = Utils::readLine($body);
 
             if(!empty($line)) {
-
+                //callback
                 call_user_func($callback, $line);
             }
 
