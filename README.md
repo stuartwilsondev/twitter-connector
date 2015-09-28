@@ -1,13 +1,6 @@
 # Twitter Stream Connector (Symfony2 Bundle)
 
-This bundle makes it easy to access Tweets from the Twitter Streaming API. 
-
-See Twitter [Streaming API docs](https://dev.twitter.com/streaming/reference/post/statuses/filter "Twitter Streaming API")
-
-
-The main Method (getStream) takes 2 arguments.
-- $track. The filter to be applied to the stream (array with comma separated values)
-- $callback. A function that will be applied to each Tweet.
+This bundle makes it easy to access Tweets from the Twitter API. 
 
 #### Installation
 Add repo to "repositories" in composer.json
@@ -62,6 +55,15 @@ twitter_connector:
 
 ##### Streaming endpoint
 
+
+See Twitter [Streaming API docs](https://dev.twitter.com/streaming/reference/post/statuses/filter "Twitter Streaming API")
+
+
+The getStream Method takes 2 arguments.
+- $track. The filter to be applied to the stream (array with comma separated values)
+- $callback (optional). A function that will be applied to each Tweet.
+
+
 ```php
 $client = $this->get('twitter_connector.twitter_client');
 $client->getStream(['track' => 'potato,elephant,cheese'], function($tweet) {
@@ -83,17 +85,21 @@ $client->getStream(['track' => 'potato,elephant,cheese'], function($tweet) {
 
 ##### User timeline
 
+
+See Twitter [User Timeline docs]https://dev.twitter.com/rest/reference/get/statuses/user_timeline "Twitter User timeline API")
+
+
+The getStream Method takes 2 arguments.
+- $track. The filter to be applied to the stream (array with comma separated values)
+- $noOfTweets (default 10). The number of tweets to retrieve 
+
+
 ```php
 $client = $this->get('twitter_connector.twitter_client');
-$client->getUserTimeLine('stuartwilsondev',10, function($tweet) {
+$tweets = $client->getUserTimeLine('stuartwilsondev',10);
 
-    //do what you need to do with the Tweet here (applied to each Tweet)
-    //In this example I just decode the json and print it out
-    //e.g.
-    
-   $tweetData = json_decode($tweet);
+    $tweetsData = json_decode($tweets);
 
-   print_r($tweetData);
-   
-});
+    print_r($tweetsData);
+
 ```

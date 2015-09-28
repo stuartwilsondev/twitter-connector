@@ -137,14 +137,15 @@ class TwitterClient
 
     }
 
+
     /**
      * Get User timeline
      *
      * @param $username
      * @param $noOfTweets
-     * @param $callback
+     * @return string
      */
-    public function getUserTimeLine($username, $noOfTweets, $callback)
+    public function getUserTimeLine($username, $noOfTweets)
     {
         $client = $this->createClient();
 
@@ -158,19 +159,7 @@ class TwitterClient
 
         $body = $response->getBody();
 
-        while (!$body->eof()) {
-
-            //Read a line of the response
-            $line = Utils::readLine($body);
-
-            if(!empty($line)) {
-                //callback
-                call_user_func($callback, $line);
-            }
-
-            if( ob_get_level() > 0 ) ob_flush();
-            flush();
-        }
+        return $body->getContents();
 
     }
 
