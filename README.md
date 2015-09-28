@@ -86,7 +86,7 @@ $client->getStream(['track' => 'potato,elephant,cheese'], function($tweet) {
 ##### User timeline
 
 
-See Twitter [User Timeline docs]https://dev.twitter.com/rest/reference/get/statuses/user_timeline "Twitter User timeline API")
+See Twitter [User Timeline docs](https://dev.twitter.com/rest/reference/get/statuses/user_timeline "Twitter User timeline API")
 
 
 The getStream Method takes 2 arguments.
