@@ -90,7 +90,7 @@ See Twitter [User Timeline docs](https://dev.twitter.com/rest/reference/get/stat
 
 
 The getStream Method takes 2 arguments.
-- $track. The filter to be applied to the stream (array with comma separated values)
+- $username. The user whose timeline we with to get
 - $noOfTweets (default 10). The number of tweets to retrieve 
 
 
