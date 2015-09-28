@@ -25,6 +25,7 @@ class TwitterClient
     const TWITTER_API_URL = 'https://api.twitter.com/1.1/';
     const STATUSES_ENDPOINT = 'statuses/filter.json';
     const USER_TIMELINE_ENDPOINT = 'statuses/user_timeline.json';
+    const USER_LOOKUP_ENDPOINT = "users/lookup.json";
     const MAX_RETRIES = 10;
 
     /**
@@ -155,6 +156,29 @@ class TwitterClient
                 'count' => $noOfTweets
             ]);
 
+        $response = $client->get($url);
+
+        $body = $response->getBody();
+
+        return $body->getContents();
+
+    }
+
+
+    /**
+     * Get user info
+     *
+     * @param $userScreenNames (comma separated list)
+     * @return string
+     */
+    public function userLookup($userScreenNames)
+    {
+        $client = $this->createClient();
+
+        $url = self::USER_LOOKUP_ENDPOINT.'?'.
+            http_build_query([
+                'screen_name' => $userScreenNames
+            ]);
         $response = $client->get($url);
 
         $body = $response->getBody();
