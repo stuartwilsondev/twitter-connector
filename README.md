@@ -89,7 +89,7 @@ $client->getStream(['track' => 'potato,elephant,cheese'], function($tweet) {
 See Twitter [User Timeline docs](https://dev.twitter.com/rest/reference/get/statuses/user_timeline "Twitter User timeline API")
 
 
-The getStream Method takes 2 arguments.
+The getUserTimeLine Method takes 2 arguments.
 - $username. The user whose timeline we wish to get
 - $noOfTweets (default 10). The number of tweets to retrieve 
 
