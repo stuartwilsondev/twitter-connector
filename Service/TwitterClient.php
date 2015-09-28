@@ -21,8 +21,10 @@ class TwitterClient
 {
     use LoggerAwareTrait;
 
-    const TWITTER_API_URL = 'https://stream.twitter.com/1.1/';
+    const TWITTER_STREAM_URL = 'https://stream.twitter.com/1.1/';
+    const TWITTER_API_URL = 'https://api.twitter.com/1.1/';
     const STATUSES_ENDPOINT = 'statuses/filter.json';
+    const USER_TIMELINE_ENDPOINT = 'statuses/user_timeline.json';
     const MAX_RETRIES = 10;
 
     /**
@@ -68,11 +70,16 @@ class TwitterClient
         $this->accessSecret = $accessSecret;
     }
 
-    public function getStream($track, $callback)
-    {
 
+    /**
+     * Create a client obj
+     * @param string $baseUrl
+     * @return Client
+     */
+    private function createClient($baseUrl = self::TWITTER_API_URL)
+    {
         $client = new Client([
-            'base_url' => self::TWITTER_API_URL,
+            'base_url' => $baseUrl,
             'defaults' => ['auth' => 'oauth', 'stream' => true],
         ]);
 
@@ -92,11 +99,62 @@ class TwitterClient
         $client->getEmitter()->attach($retry);
         $client->getEmitter()->attach($oauth);
 
+        return $client;
+    }
+
+    /**
+     * This method opens a connection to the Twitter streaming API and applies the given callback function to each Tweet
+     * @param $track
+     * @param $callback
+     */
+    public function getStream($track, $callback)
+    {
+
+        $client = $this->createClient(
+            self::TWITTER_STREAM_URL
+        );
 
         $response = $client->post(self::STATUSES_ENDPOINT, [
             'body'   => $track
         ]);
 
+
+        $body = $response->getBody();
+
+        while (!$body->eof()) {
+
+            //Read a line of the response
+            $line = Utils::readLine($body);
+
+            if(!empty($line)) {
+                //callback
+                call_user_func($callback, $line);
+            }
+
+            if( ob_get_level() > 0 ) ob_flush();
+            flush();
+        }
+
+    }
+
+    /**
+     * Get User timeline
+     *
+     * @param $username
+     * @param $noOfTweets
+     * @param $callback
+     */
+    public function getUserTimeLine($username, $noOfTweets, $callback)
+    {
+        $client = $this->createClient();
+
+        $url = self::USER_TIMELINE_ENDPOINT.'?'.
+            http_build_query([
+                'screen_name' => $username,
+                'count' => $noOfTweets
+            ]);
+
+        $response = $client->get($url);
 
         $body = $response->getBody();
 

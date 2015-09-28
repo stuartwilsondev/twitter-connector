@@ -60,6 +60,8 @@ twitter_connector:
 
 #### Usage
 
+##### Streaming endpoint
+
 ```php
 $client = $this->get('twitter_connector.twitter_client');
 $client->getStream(['track' => 'potato,elephant,cheese'], function($tweet) {
@@ -76,5 +78,22 @@ $client->getStream(['track' => 'potato,elephant,cheese'], function($tweet) {
             
     print_r($out);
 
+});
+```
+
+##### User timeline
+
+```php
+$client = $this->get('twitter_connector.twitter_client');
+$client->getUserTimeLine('stuartwilsondev',10, function($tweet) {
+
+    //do what you need to do with the Tweet here (applied to each Tweet)
+    //In this example I just decode the json and print it out
+    //e.g.
+    
+   $tweetData = json_decode($tweet);
+
+   print_r($tweetData);
+   
 });
 ```
